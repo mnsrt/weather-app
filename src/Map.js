@@ -76,10 +76,8 @@ function Map() {
             });
     }, []);
 
-
-
     return (
-        <MapContainer center={[58.802335, 25.420606]} zoom={8} scrollWheelZoom={false} style={{ height: '100vh' }}>
+        <MapContainer center={[58.802335, 25.420606]} zoom={8} scrollWheelZoom={true} style={{ height: '100vh' }}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="Map data © OpenStreetMap contributors" />
 
             {stations.map(station => (
