@@ -43,8 +43,9 @@ function Map() {
 
 
     useEffect(() => {
-        axios.get(apiUrl)
-            .then(response => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(apiUrl);
                 const parser = new DOMParser();
                 const xml = parser.parseFromString(response.data, 'application/xml');
                 const stationNodes = xml.querySelectorAll('station');
@@ -70,10 +71,19 @@ function Map() {
                     };
                 });
                 setStations(stations);
-            })
-            .catch(error => {
+            } catch(error) {
                 console.error(error);
-            });
+            }
+    };
+
+    // Fetch data on mount
+    fetchData();
+
+    // Reload data every minute
+    const intervalId = setInterval(fetchData, 60000);
+
+    // Cleanup interval on unmount
+    return () => clearInterval(intervalId);
     }, []);
 
     return (
@@ -81,13 +91,12 @@ function Map() {
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="Map data © OpenStreetMap contributors" />
 
             {stations.map(station => (
-                <Marker position={[station.latitude, station.longitude]}>
+                <Marker key={station.name} position={[station.latitude, station.longitude]}>
                     <Popup>
                         <h3>{station.name}</h3>
                         <p>Temperatuur: {station.temperature}°C</p>
                         <p>Tuule kiirus: {station.windSpeed} m/s</p>
                         <p>Olustik: {phenomenonMap[station.phenomenon]}</p>
-                        <p>Relatiivne õhuniiskus: {station.relativeHumidity}%</p>
                         <p>Õhuniiskus: {station.relativeHumidity}%</p>
                         <p>Nähtavus: {station.visibility} km</p>
                         <p>Sademed: {station.precipitations} mm</p>
@@ -107,7 +116,5 @@ function Map() {
     );
 
 }
-
-
 
 export default Map;
