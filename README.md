@@ -6,6 +6,12 @@ Simple react application that shows the weather in Estonia. The application uses
 
 ## Scripts
 
+### Running with docker
+```docker build -t estonian-weather-app .``` \
+```docker run -it --rm -p 3000:3000 estonian-weather-app```
+
+
+### For development
 In the project directory, you can run:
 
 ### `npm start`
