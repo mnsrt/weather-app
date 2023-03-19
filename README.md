@@ -1,7 +1,7 @@
 # Estonian Weather App
 Simple react application that shows the weather in Estonia. The application uses https://www.ilmateenistus.ee to fetch the weather data and OpenStreeMap.
 
-![img_1.png](img_1.png)
+![img_1.png](img_1.webp)
 
 
 ## Scripts

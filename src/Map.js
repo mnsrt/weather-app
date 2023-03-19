@@ -105,7 +105,7 @@ function Map() {
                         <p>Tuule kiirus: {station.windspeed} m/s</p>
                         <p>Tuul puhanguti: {station.windspeedMax} m/s</p>
                         <p>UV indeks: {station.uvIndex}</p>
-                        <p>Sisevee tase: {station.waterlevel} m</p>
+                        <p>Sisevete tase: {station.waterlevel} m</p>
                         <p>Merevee tase (EH2000): {station.waterlevel_eh2000} m</p>
                         <p>Vee temperatuur: {station.watertemperature}°C</p>
                     </Popup>
